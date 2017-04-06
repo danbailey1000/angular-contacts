@@ -1,0 +1,28 @@
+<div>
+    <label>ID:</label> <input #id />
+</div>
+<div>
+    <label>First Name:</label> <input #firstName />
+</div>
+<div>
+    <label>Last Name:</label> <input #lastName />
+</div>
+<label>Tel No:</label> <input #telNo />
+<div>
+    <button (click)="add(id.value, firstName.value, lastName.value, 
+    telNo.value); 
+    id.value='';
+    firstName.value='';
+    lastName.value='';
+    telNo.value='';
+    ">
+      Add
+    </button>
+</div>
+<ul class="contacts">
+    <li *ngFor="let contact of contacts" [class.selected]="contact === selectedContact" (click)="onSelect(contact)">
+        <span class="badge">{{contact.id}}</span> {{contact.firstName + ' ' + contact.lastName}}
+        <button class="delete" (click)="delete(contact); $event.stopPropagation()">x</button>
+    </li>
+</ul>
+<my-contact-detail [contact]="selectedContact"></my-contact-detail>
