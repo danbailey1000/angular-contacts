@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AdalService } from 'ng2-adal/core';
 import { SecretService } from './secret.service';
