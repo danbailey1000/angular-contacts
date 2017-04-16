@@ -13,21 +13,29 @@ import { AppRoutingModule } from './app-routing.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryContactService } from './in-memory-contact.service';
 
+import { AdalService } from 'ng2-adal/core';
+import { SecretService } from './secret.service';
+import { WelcomeComponent } from './welcome.component';
+import { LoggedInGuard } from "./logged-in.guard";
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
     ContactDetailComponent,
-    ContactsComponent
+    ContactsComponent,
+    WelcomeComponent
   ],
   providers: [
-    ContactService
+    ContactService,
+    AdalService,
+    SecretService,
+    LoggedInGuard
   ],
   bootstrap: [AppComponent]
 })

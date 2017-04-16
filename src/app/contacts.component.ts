@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Contact } from './contact';
 import { ContactService } from './contact.service';
 import { OnInit } from '@angular/core';
+import { AdalService } from 'ng2-adal/core';
 
 @Component({
     selector: 'my-contacts',
@@ -11,7 +12,8 @@ import { OnInit } from '@angular/core';
 })
 
 export class ContactsComponent implements OnInit {
-    constructor(private contactService: ContactService) { }
+    constructor(private contactService: ContactService,
+        private adalService: AdalService) { }
     selectedContact: Contact;
     contacts = Contact[0];
     onSelect(contact: Contact): void {
@@ -51,6 +53,10 @@ export class ContactsComponent implements OnInit {
                 this.contacts = this.contacts.filter(c => c !== contact);
                 if (this.selectedContact === contact) { this.selectedContact = null; }
             });
+    }
+
+    logOut(): void {
+        this.adalService.logOut();
     }
 }
 
