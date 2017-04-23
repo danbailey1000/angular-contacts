@@ -9,11 +9,12 @@ import 'rxjs/add/operator/toPromise';
 export class ContactService {
     constructor(private http: Http, private adalService: AdalService) { }
     private headers = new Headers({
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' +
         this.adalService.getCachedToken('4fb4f3c4-23b1-4e2f-a3b1-a79698310dc0')
     });
-    private contactsUrl = 'http://contactsapplication.azurewebsites.net/api/contacts';  // URL to web api
+    private contactsUrl = 'https://contactsapplication.azurewebsites.net/api/contacts';  // URL to web api
 
     getContacts(): Promise<Contact[]> {
         return this.http.get(this.contactsUrl, { headers: this.headers })
@@ -51,7 +52,7 @@ export class ContactService {
     create(contact: Contact): Promise<Contact> {
         return this.http
             .post(this.contactsUrl, JSON.stringify(contact), { headers: this.headers })
-            .toPromise().then(res => contact)
+            .toPromise().then((res) => contact)
             .catch(this.handleError);
     }
 
